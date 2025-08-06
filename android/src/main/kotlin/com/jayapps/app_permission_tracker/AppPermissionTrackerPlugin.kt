@@ -1,5 +1,5 @@
 
-package com.example.app_permission_tracker
+package com.jayapps.app_permission_tracker
 
 import android.Manifest
 import android.content.pm.PackageManager

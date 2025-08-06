@@ -24,7 +24,7 @@ flutter:
   plugin:
     platforms:
       android:
-        package: com.example.app_permission_tracker
+        package: com.jayapps.app_permission_tracker
         pluginClass: AppPermissionTrackerPlugin
       ios:
         pluginClass: AppPermissionTrackerPlugin

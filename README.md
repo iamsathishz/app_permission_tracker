@@ -1,5 +1,7 @@
 # 📱 app_permission_tracker
 
+[![pub package](https://img.shields.io/pub/v/app_permission_tracker.svg)](https://pub.dev/packages/app_permission_tracker)
+
 A Flutter plugin to **check the status of runtime permissions** on Android and iOS platforms.
 
 This plugin allows developers to easily verify whether specific permissions (camera, location, microphone, etc.) are **granted**, **denied**, or **unsupported** on the device.
@@ -44,23 +46,82 @@ import 'package:app_permission_tracker/app_permission_tracker.dart';
 ```
 
 ### ✅ Check permission status
+
 ```dart
 String status = await AppPermissionTracker.checkPermissionStatus('camera');
 print('Camera permission: $status'); // granted / denied / unsupported
 ```
 
-### 📦 Installation
+---
 
-```bash
+## 📦 Installation
+
+Add to your `pubspec.yaml`:
+
+```yaml
 dependencies:
   app_permission_tracker: ^0.0.1
 ```
 
-### 📄 iOS Setup
-
-Add these keys to your Info.plist for proper permission access:
+Then run:
 
 ```bash
+flutter pub get
+```
+
+---
+
+## 📱 Android Setup
+
+### 1. Add permissions in `AndroidManifest.xml`
+
+Open:
+```
+android/app/src/main/AndroidManifest.xml
+```
+
+Add the following inside the `<manifest>` tag:
+
+```xml
+<!-- Camera -->
+<uses-permission android:name="android.permission.CAMERA" />
+<!-- Location -->
+<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+<!-- Microphone -->
+<uses-permission android:name="android.permission.RECORD_AUDIO" />
+<!-- Contacts -->
+<uses-permission android:name="android.permission.READ_CONTACTS" />
+<!-- Calendar -->
+<uses-permission android:name="android.permission.READ_CALENDAR" />
+<!-- SMS -->
+<uses-permission android:name="android.permission.READ_SMS" />
+<!-- Storage -->
+<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+<!-- Phone -->
+<uses-permission android:name="android.permission.READ_PHONE_STATE" />
+<!-- Body Sensors -->
+<uses-permission android:name="android.permission.BODY_SENSORS" />
+<!-- Android 13+ Notification -->
+<uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+<!-- Android 13+ Media -->
+<uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+<uses-permission android:name="android.permission.READ_MEDIA_VIDEO" />
+<uses-permission android:name="android.permission.READ_MEDIA_AUDIO" />
+```
+
+> ⚠️ This plugin only **checks** permission status. If you want to **request** permissions, use a plugin like [`permission_handler`](https://pub.dev/packages/permission_handler) or implement custom logic.
+
+---
+
+## 📄 iOS Setup
+
+Add these permission descriptions in:
+```
+ios/Runner/Info.plist
+```
+
+```xml
 <key>NSCameraUsageDescription</key>
 <string>Camera access is needed to take photos</string>
 <key>NSLocationWhenInUseUsageDescription</key>
@@ -68,37 +129,32 @@ Add these keys to your Info.plist for proper permission access:
 <key>NSMicrophoneUsageDescription</key>
 <string>Microphone access is needed for recording</string>
 <key>NSContactsUsageDescription</key>
-<string>We use contacts for...</string>
+<string>We use contacts for contact-based features</string>
 <key>NSCalendarsUsageDescription</key>
-<string>Access calendar for...</string>
+<string>Calendar access is needed</string>
 <key>NSRemindersUsageDescription</key>
-<string>Access reminders for...</string>
+<string>We need reminders access</string>
 ```
 
 ---
 
-## ✅ `LICENSE` (MIT License)
+## 🧪 Example
+
+Try the included example app to test permission checks:
+
+```bash
+cd example
+flutter run
+```
+
+---
+
+## ✅ LICENSE
 
 ```text
 MIT License
 
-Copyright (c) 2025 [Your Name]
-
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights  
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell  
-copies of the Software, and to permit persons to whom the Software is  
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included  
-in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS  
-OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,  
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE  
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER  
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,  
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN  
-THE SOFTWARE.
-
+in the Software without restriction...
+```
